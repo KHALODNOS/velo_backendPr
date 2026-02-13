@@ -14,7 +14,17 @@ exports.getAllBikes = async (req, res) => {
 // ADD NEW BIKE
 exports.addNewBike = async (req, res) => {
   try {
-    const bike = await Velo.create(req.body);
+    if (!req.files || req.files.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "Please upload at least one image" });
+    }
+    const imagePaths = req.files.map((file) => file.filename);
+    const bike = await Velo.create({
+      ...req.body,
+      images: imagePaths,
+    });
+
     res.status(201).json(bike);
   } catch (error) {
     res.status(500).json({ error: error.message });

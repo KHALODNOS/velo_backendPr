@@ -4,7 +4,7 @@ const VeloSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  model: {
+  nom: {
     type: String,
     required: true,
   },
@@ -12,24 +12,25 @@ const VeloSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ["Grand", "Moyenne", "petit"],
+    default: "Moyenne",
   },
   type: {
     type: String,
     required: true,
-    enum: ["normal", "electrique"],
+    enum: ["City", "Electric", "Vtt"],
+    default: "City",
   },
   prix: {
     type: Number,
   },
-  image: {
-    type: String,
+  images: {
+    type: [String],
+    required: true,
   },
   available: {
     type: Boolean,
     default: true,
   },
 });
-
-
 
 module.exports = mongoose.model("Velo", VeloSchema);
