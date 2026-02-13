@@ -12,11 +12,13 @@ const VeloSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ["Grand", "Moyenne", "petit"],
+    default: "Moyenne",
   },
   type: {
     type: String,
     required: true,
-    enum: ["normal", "electrique"],
+    enum: ["City", "Electric", "Vtt"],
+    default: "City",
   },
   prix: {
     type: Number,
@@ -29,7 +31,5 @@ const VeloSchema = new mongoose.Schema({
     default: true,
   },
 });
-
-//image->cdn d ghayna kolo
 
 module.exports = mongoose.model("Velo", VeloSchema);
