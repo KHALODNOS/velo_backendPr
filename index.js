@@ -6,6 +6,7 @@ const userRoutes = require("./routes/UserRoutes");
 const BikeRoutes = require("./routes/VeloRoutes");
 const app = express();
 
+app.use("/uploads", express.static("uploads"));
 app.use(cors());
 app.use(express.json());
 app.use("/api/", userRoutes);

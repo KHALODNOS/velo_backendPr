@@ -4,7 +4,7 @@ const VeloSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  model: {
+  nom: {
     type: String,
     required: true,
   },
@@ -23,8 +23,9 @@ const VeloSchema = new mongoose.Schema({
   prix: {
     type: Number,
   },
-  image: {
-    type: String,
+  images: {
+    type: [String],
+    required: true,
   },
   available: {
     type: Boolean,
