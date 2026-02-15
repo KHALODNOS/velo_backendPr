@@ -26,6 +26,8 @@ exports.addNewBike = async (req, res) => {
     });
 
     res.status(201).json(bike);
+
+    console.log(req.files)
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

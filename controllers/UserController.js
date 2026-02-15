@@ -70,17 +70,17 @@ const Login = async (req, res) => {
     res.status(200).json({
       success: true,
       token,
-      user: { nom: user.nom, email: user.email, role: user.role },
+      user: { nom: user.nom, email: user.email, role: user.role, id: user._id },
     });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 };
 
-const profile = async (req, res) => {
-  const user = await User.findById(req.user.id).select("-password");
-  res.json({ user });
-};
+// const profile = async (req, res) => {
+//   const user = await User.findById(req.user.id).select("-password");
+//   res.json({ user });
+// };
 
 // favorite
 
@@ -139,7 +139,7 @@ const removeFavorite = async (req, res) => {
 module.exports = {
   inscription,
   Login,
-  profile,
+
   getFavorites,
   addFavorite,
   removeFavorite,
