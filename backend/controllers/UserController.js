@@ -79,10 +79,10 @@ const Login = async (req, res) => {
   }
 };
 
-// const profile = async (req, res) => {
-//   const user = await User.findById(req.user.id).select("-password");
-//   res.json({ user });
-// };
+const profile = async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  res.json({ user });
+};
 
 // favorite
 
@@ -154,7 +154,9 @@ const deleteUser = async (req, res) => {
     if (!user) return res.status(404).json({ error: "User not found" });
 
     if (user.role === "admin") {
-      return res.status(403).json({ error: "Action interdite: suppression d'un administrateur" });
+      return res
+        .status(403)
+        .json({ error: "Action interdite: suppression d'un administrateur" });
     }
 
     await User.findByIdAndDelete(id);
@@ -167,10 +169,12 @@ const deleteUser = async (req, res) => {
 module.exports = {
   inscription,
   Login,
+  profile,
 
   getFavorites,
   addFavorite,
   removeFavorite,
+  
   getAllUsers,
   deleteUser,
 };
